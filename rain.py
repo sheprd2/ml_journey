@@ -8,3 +8,9 @@ print(kerala[["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OC
 avg=kerala.ANNUAL.mean()
 print(avg)
 print((kerala.ANNUAL>avg).sum())
+print(kerala.isnull().sum())
+kerala=kerala.dropna(subset=["ANNUAL"])
+#dropping the years with missing annual rainfall data
+kerala['DECADE']=kerala.YEAR//10 *10
+print(kerala.groupby("DECADE").ANNUAL.mean())
+kerala.to_csv("kerala_clean.csv",index=False)
