@@ -14,3 +14,5 @@ kerala=kerala.dropna(subset=["ANNUAL"])
 kerala['DECADE']=kerala.YEAR//10 *10
 print(kerala.groupby("DECADE").ANNUAL.mean())
 kerala.to_csv("kerala_clean.csv",index=False)
+print(kerala["ANNUAL"]) // returns the annual rainfall data for Kerala  
+print(kerala[["ANNUAL"]])// returns the annual rainfall data for Kerala in a DataFrame format

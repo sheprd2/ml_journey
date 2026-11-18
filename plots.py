@@ -1,0 +1,28 @@
+import pandas as pd
+import seaborn as sns 
+import matplotlib.pyplot as plt
+df=pd.read_csv("kerala_clean.csv")
+plt.figure(figsize=(10,5))
+plt.plot(df.YEAR,df.ANNUAL)
+plt.axhline(df.ANNUAL.mean(),color="red",linestyle="--",label="Average")
+plt.title("Kerala annual rainfall, 1901-2015")
+plt.xlabel("Year")
+plt.ylabel("Rainfall (mm)")
+plt.legend()
+plt.savefig("annual_trend.png",dpi=150)
+plt.show()
+months=["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+plt.figure(figsize=(10,5))
+plt.bar(months,df[months].mean())
+plt.title("Kerala monthly rainfall, 1901-2015")
+plt.xlabel("Month")
+plt.ylabel("Rainfall (mm)")
+plt.savefig("monthly_trend.png",dpi=150)
+plt.show()
+plt.figure(figsize=(10,5))
+sns.barplot(df.groupby("DECADE").ANNUAL.mean())
+plt.title("Kerala decadal rainfall, 1901-2015")
+plt.xlabel("Decade")
+plt.ylabel("Rainfall (mm)")
+plt.savefig("decadal_trend.png",dpi=150)
+plt.show()
